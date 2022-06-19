@@ -39,11 +39,11 @@ class LayoutCalc {
 
     layout() {
         return {
-            mainHeight: this.calendarMainHeight,
-            titleHeight: this.calendarTitleHeight,
-            panelHeight: this.calendarPanelHeight,
-            maxHeight: this.calendarMaxHeight,
-            minHeight: this.calendarMinHeight
+            mainHeight: 360,
+            titleHeight: 40,
+            panelHeight: 270,
+            maxHeight: 360,
+            minHeight: 144
         }
     }
 

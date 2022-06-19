@@ -1,10 +1,10 @@
 .wx-calendar-weeks {
     @include column-rect;
-    height: 50rpx;
+    height: 25px;
     padding: 10rpx 10rpx 0;
     position: absolute;
     width: 100%;
-    top: 100rpx;
+    top: 40px;
     left: 0;
     z-index: 1024;
     background: transparent;
@@ -21,9 +21,9 @@
 
 .wx-calendar-panel {
     width: 100%;
-    height: calc(100% - 200rpx);
+    height: calc(100% - 90px);
     position: absolute;
-    top: 150rpx;
+    top: 65px;
     left: 0;
     z-index: 10;
     background: transparent;
@@ -36,8 +36,6 @@
     }
     &-month {
         width: 100%;
-        /* height: 620rpx;
-        min-height: 620rpx; */
         display: flex;
         flex-direction: column;
         position: absolute;
@@ -48,8 +46,8 @@
         position: absolute;
         top: 0;
         left: 0;
-        width: 100rpx;
-        height: 100rpx;
+        width: 44px;
+        height: 44px;
         border-radius: 50%;
         transform: translate(-50%, -50%);
         transition: all .28s ease 0s;
@@ -81,7 +79,7 @@
     }
     &-row {
         width: 100%;
-        padding: 0 10rpx;
+        padding: 0 3px;
         @include column-rect;
         @include month-week-rows(4);
         @include month-week-rows(5);
@@ -132,7 +130,6 @@
     &-day {
         font-size: $wx-calendar-date-size;
         line-height: $wx-calendar-date-size;
-        font-weight: bold;
         color: theme(date-color);
         transition: color .3s ease 0s;
         position: relative;
@@ -168,7 +165,7 @@
         line-height: $wx-calendar-solar-size;
         color: theme(date-info-color);
         font-weight: bold;
-        margin-top: 8rpx;
+        margin-top: 2px;
         transition: color .3s ease 0s;
         letter-spacing: 2rpx;
         padding-left: 2rpx;
@@ -181,7 +178,7 @@
         &-schedules {
             position: absolute;
             width: 100%;
-            padding: 0 8rpx;
+            padding: 0 3px;
             top: 30rpx;
             left: 0;
             display: flex;
