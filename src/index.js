@@ -77,6 +77,12 @@ Component({
             type: Boolean,
             value: true
         },
+
+        showTitleContent: {
+            type: Boolean,
+            value: true
+        },
+
         /**
          * @type {boolean} true | false
          * @description 是否显示标记
@@ -139,8 +145,8 @@ Component({
 
         /** initialize */
         initialize(callback = () => {}) {
-
-            const layout = new LayoutCalc
+            const { showTitleContent } = this.data;
+            const layout = new LayoutCalc({ showTitleContent });
             const { mainHeight, panelHeight, maxHeight, minHeight } = layout.layout()
             const initSelDate = DateHandler.CorrectDate(this.data._date)
 

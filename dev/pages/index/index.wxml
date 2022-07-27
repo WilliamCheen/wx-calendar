@@ -2,6 +2,8 @@
     <calendar 
         id="calendar" 
         _markers="{{ markers }}" 
+        showLunar="{{ false }}"
+        showTitleContent="{{ false }}"
         bindload="handleCalendarLoad"
         binddatechange="handleCalendarDateChange"
         bindviewchange="handleCalendarPanelViewChange">

@@ -16,7 +16,7 @@
         data-min="{{ minHeight }}">
 
         <!-- Calendar Title Start -->
-        <view class="wx-calendar-title">
+        <view wx:if="{{ showTitleContent }}" class="wx-calendar-title">
             <view class="wx-calendar-title-main" data-info="{{ titleInfo }}" bindtap="{{ calendar_wxs.handleYearPanelShow }}">
                 <text >{{ months[currTab].year }}</text><text class="wx-calendar-cn-text">年</text>
                 <text >{{ months[currTab].month }}</text>
@@ -44,7 +44,7 @@
         <!-- Calendar Title End -->
 
         <!-- Calendar Week Start -->
-        <view class="wx-calendar-weeks">
+        <view class="wx-calendar-weeks {{ !showTitleContent ? 'wx-calendar-weeks-align-top' : '' }}">
             <view class="wx-calendar-weeks-item" wx:for="{{ weeks }}" wx:key="*this">{{ item }}</view>
         </view>
         <!-- Calendar Week End -->
@@ -52,7 +52,7 @@
         <!-- Calendar Panel Month Start -->
         <view 
             wx:if="{{ !loading }}"
-            class="wx-calendar-panel {{ solidDay ? 'solid' : '' }}" 
+            class="wx-calendar-panel {{ solidDay ? 'solid' : '' }} {{ !showTitleContent ? 'wx-calendar-panel-align-top' : '' }}" 
             change:weektabchange="{{ calendar_wxs.handleWeekSwiperChange }}" weektabchange="{{ weektabchange }}"
             change:monthchange="{{ calendar_wxs.handleMonthChange }}" monthchange="{{ monthchange }}"
             change:needInitTrans="{{ calendar_wxs.handleInitTrans }}" needInitTrans="{{ needInitTrans }}"
@@ -102,7 +102,7 @@
                                         style="{{ d.marker.corner[0].color ? 'color:' + d.marker.corner[0].color + ';' : '' }}"
                                         >{{ d.marker.corner[0].mark }}</view>
                                 </view>
-                                <view class="wx-calendar-panel-solar {{ showLunar ? d.lunar.lunar_type : '' }}">
+                                <view wx:if="{{ showLunar }}" class="wx-calendar-panel-solar {{ showLunar ? d.lunar.lunar_type : '' }}">
                                     <text 
                                         wx:if="{{ d.marker && d.marker.holiday.length > 0 }}"
                                         style="color: {{ d.marker.holiday[0].color ? d.marker.holiday[0].color : '#2a97ff' }};"
