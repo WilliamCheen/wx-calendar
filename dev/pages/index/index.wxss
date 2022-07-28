@@ -16,3 +16,25 @@ page {
         background-color: #111;
     }
 }
+
+.prev {
+    color: red !important;
+}
+
+.next {
+    color: green;
+}
+
+.wx-calendar-panel-date.prev {
+    color: red;
+}
+
+.wx-calendar-panel-date {
+    color: red;
+}
+
+
+.curr > .wx-calendar-panel-day {
+    color: white !important;
+}
+

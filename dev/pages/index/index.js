@@ -3,15 +3,16 @@ const app = getApp()
 
 Page({
     data: {
+        scheduleStyle: { style: 'able', disable: 'lightgray' , enable: 'black' },
         markers: [
             { year: 2021, month: 9, day: 1, type: 'holiday', mark: '愚人节', color: '#2a97ff', bgColor: '#cce6ff' },
             { year: 2021, month: 9, day: 4, type: 'holiday', mark: '清明', color: '#2a97ff', bgColor: '#cce6ff' },
             { year: 2021, month: 9, day: 3, type: 'corner', mark: '休', color: '#61b057' },
             { year: 2021, month: 9, day: 4, type: 'corner', mark: '休', color: '#61b057' },
-            { year: 2021, month: 9, day: 5, type: 'corner', mark: '休', color: '#61b057' },
-            { year: 2021, month: 9, day: 6, type: 'schedule', mark: '测试一下', color: '#2a97ff', bgColor: '#cce6ff' },
-            { year: 2021, month: 9, day: 6, type: 'schedule', mark: '测试一下哈哈哈', color: '#2a97ff', bgColor: '#cce6ff' },
-            { year: 2021, month: 9, day: 6, type: 'schedule', mark: '测试一下哈哈哈', color: '#2a97ff', bgColor: '#cce6ff' }
+            { year: 2022, month: 7, day: 5, type: 'corner', mark: '休', color: '#61b057' },
+            { year: 2022, month: 9, day: 6, type: 'schedule', mark: '测试一下', color: '#2a97ff', bgColor: '#cce6ff' },
+            { year: 2022, month: 7, day: 6, type: 'schedule', mark: '测试一下哈哈哈', color: '#2a97ff', bgColor: '#cce6ff' },
+            { year: 2022, month: 9, day: 6, type: 'schedule', mark: '测试一下哈哈哈', color: '#2a97ff', bgColor: '#cce6ff' }
         ]
     },
     onLoad() {
@@ -40,6 +41,7 @@ Page({
     },
     onTap() {
         this.setData({
+            
             markers: [
                 { year: 2022, month: 1, day: 10, type: 'holiday', mark: '愚人节', color: '#2a97ff', bgColor: '#cce6ff' },
                 { year: 2022, month: 1, day: 11, type: 'corner', mark: '休', color: '#61b057' },

@@ -39,6 +39,21 @@
         height: calc(100% - 50px);
     }
 
+    &-none-title-bar {
+        top: 25px;
+        height: calc(100% - 25px);
+    }
+
+    &-none-title {
+        top: 25px;
+        height: calc(100% - 50px);
+    }
+
+    &-none-bar {
+        top: 65px;
+        height: calc(100% - 65px);
+    }
+
     &.solid {
         .wx-calendar-panel-date.prev,
         .wx-calendar-panel-date.next {
@@ -113,8 +128,8 @@
         &.curr {
             .wx-calendar-panel-day {
                 color: theme(sel-color);
-                &.dot::before {
-                    color: theme(sel-dot-color);
+                &.dot::after {
+                    background-color: theme(sel-dot-color);
                 }
             }
             .wx-calendar-panel-solar {
@@ -123,8 +138,8 @@
             &.today {
                 .wx-calendar-panel-day {
                     color: theme(sel-today-color);
-                    &.dot::before {
-                        color: theme(sel-today-dot-color);
+                    &.dot::after {
+                        background-color: theme(sel-today-dot-color);
                     }
                 }
                 .wx-calendar-panel-solar {
@@ -145,13 +160,16 @@
         transition: color .3s ease 0s;
         position: relative;
         &.dot {
-            &::before {
-                content: "･";
+            &::after {
+                content: "";
+                width: 4px;
+                height: 4px;
+                border-radius: 2px;
                 position: absolute;
-                top: -22rpx;
+                top: 35rpx;
                 left: 50%;
                 transform: translateX(-50%) translateZ(0px);
-                color: theme(date-dot-color);
+                background-color: theme(date-dot-color);
                 @include animation-dot-fade;
                 opacity: 0;
                 // will-change: opacity;

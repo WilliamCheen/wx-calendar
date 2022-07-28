@@ -3,12 +3,13 @@
         id="calendar" 
         _markers="{{ markers }}" 
         showLunar="{{ false }}"
-        showTitleContent="{{ false }}"
+        showControlBar="{{ false }}"
+        scheduleStyle="{{ scheduleStyle }}"
         bindload="handleCalendarLoad"
         binddatechange="handleCalendarDateChange"
         bindviewchange="handleCalendarPanelViewChange">
         <button class="btn" bindtap="onTap">
             按钮文本
-        </button>    
+        </button>  
     </calendar>
 </view>

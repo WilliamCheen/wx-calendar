@@ -45,21 +45,21 @@
 
         <!-- Calendar Week Start -->
         <view class="wx-calendar-weeks {{ !showTitleContent ? 'wx-calendar-weeks-align-top' : '' }}">
-            <view class="wx-calendar-weeks-item" wx:for="{{ weeks }}" wx:key="*this">{{ item }}</view>
+            <view class="wx-calendar-weeks-item"  wx:for="{{ weeks }}" wx:key="*this">{{ item }}</view>
         </view>
         <!-- Calendar Week End -->
 
         <!-- Calendar Panel Month Start -->
         <view 
             wx:if="{{ !loading }}"
-            class="wx-calendar-panel {{ solidDay ? 'solid' : '' }} {{ !showTitleContent ? 'wx-calendar-panel-align-top' : '' }}" 
+            class="wx-calendar-panel {{ solidDay ? 'solid' : '' }} {{ calendar_wxs.panelClassByConfig(showTitleContent, showControlBar) }}" 
             change:weektabchange="{{ calendar_wxs.handleWeekSwiperChange }}" weektabchange="{{ weektabchange }}"
             change:monthchange="{{ calendar_wxs.handleMonthChange }}" monthchange="{{ monthchange }}"
             change:needInitTrans="{{ calendar_wxs.handleInitTrans }}" needInitTrans="{{ needInitTrans }}"
             change:viewchange="{{ calendar_wxs.handleViewChange }}" viewchange="{{ viewchange }}"
-            bindtouchstart="{{ calendar_wxs.touchStart }}"
-            catchtouchmove="{{ calendar_wxs.touchMove }}" 
-            catchtouchend="{{ calendar_wxs.touchEnd }}">
+            bindtouchstart="{{ showControlBar ? calendar_wxs.touchStart : '' }}"
+            catchtouchmove="{{ showControlBar ? calendar_wxs.touchMove : '' }}" 
+            catchtouchend="{{ showControlBar ? calendar_wxs.touchEnd : '' }}">
             <swiper 
                 circular 
                 duration="{{ 300 }}" 
@@ -94,8 +94,11 @@
                                 catchtap="selDate"
                                 data-wdx="{{ wdx }}"
                                 data-ddx="{{ ddx }}">
-                                <view class="wx-calendar-panel-day {{ currView != 3 && d.marker && d.marker.schedule.length > 0 ? 'dot' : '' }}">
-                                    <text>{{ d.day }}</text>
+                                <view class="wx-calendar-panel-day {{ currView != 3 && d.marker && d.marker.schedule.length > 0 && scheduleStyle.style === 'dot' ? 'dot' : '' }}">
+                                    <block wx:if="{{ scheduleStyle.style === 'able' && !d.today && !((wdx * 7 + ddx) == month.bar.i && currTab === mdx) }}">
+                                        <text style="color: {{ currView != 3 && d.marker && d.marker.schedule.length > 0 ? scheduleStyle.enable : scheduleStyle.disable }}" >{{ d.today && todayText ? todayText : d.day }}</text>
+                                    </block>
+                                    <text wx:else>{{ d.today && todayText ? todayText : d.day }}</text>
                                     <view 
                                         class="wx-calendar-panel-day-corner" 
                                         wx:if="{{ d.marker && d.marker.corner.length > 0 }}"
@@ -129,6 +132,7 @@
 
         <!-- Calendar Control Bar Start -->
         <view 
+            wx:if="{{ showControlBar }}"
             class="wx-calendar-bar"
             bindtouchstart="{{ calendar_wxs.touchStart }}"
             catchtouchmove="{{ calendar_wxs.touchMove }}" 

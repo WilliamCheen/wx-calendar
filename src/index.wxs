@@ -283,10 +283,23 @@ var handleYearPanelShow = function(e, ins) {
     }
 }
 
+var panelClassByConfig = function (showTitleContent, showControlBar) {
+    if (!showControlBar && !showTitleContent) {
+        return 'wx-calendar-panel-none-title-bar';
+    } else if (!showControlBar && showTitleContent) {
+        return 'wx-calendar-panel-none-bar';
+    } else if (showControlBar && !showTitleContent) {
+        return 'wx-calendar-panel-none-title';
+    }
+
+    return '';
+}
+
 module.exports = {
     touchStart: touchStart,
     touchMove: touchMove,
     touchEnd: touchEnd,
+    panelClassByConfig: panelClassByConfig,
     handleWeekSwiperChange: handleWeekSwiperChange,
     handleMonthChange: handleMonthChange,
     handleInitTrans: handleInitTrans,

@@ -3,10 +3,11 @@ class LayoutCalc {
     static RatioWidth = 750
     static CalendarHeight = 820
 
-    constructor({ showTitleContent }) {
+    constructor({ showTitleContent, showControlBar }) {
         this.device = wx.getSystemInfoSync()
         this.calendarMaxRate = this.judgeScreen()
         this.showTitleContent = showTitleContent;
+        this.showControlBar = showControlBar;
 
         this.calendarTitleHeight = this.calcTitleHeight()
         this.calendarMainHeight = this.calcMainHeight()
@@ -38,13 +39,31 @@ class LayoutCalc {
         return this.calendarPanelHeight / 5 + this.calendarTitleHeight
     }
 
+    
+
     layout() {
+        let mainHeight = 320;
+        let titleHeight = 40;
+        let panelHeight = 230;
+        let minHeight = 144;
+
+        if (!this.showTitleContent) {
+            mainHeight -= 40;
+            titleHeight = 0;
+            minHeight -= 40;
+        }
+
+        if (!this.showControlBar) {
+            mainHeight -= 25;
+            minHeight -= 25;
+        }
+
         return {
-            mainHeight: this.showTitleContent ? 320 : 280,
-            titleHeight: this.showTitleContent ? 40 : 0,
-            panelHeight: this.showTitleContent ? 230: 230,
-            maxHeight: this.showTitleContent ? 320 : 280,
-            minHeight: this.showTitleContent ? 144 : 104
+            mainHeight,
+            titleHeight,
+            panelHeight,
+            maxHeight: mainHeight,
+            minHeight
         }
     }
 

@@ -14,31 +14,31 @@ $wx-calendar-theme-normal: (
     view-color: #e54d42, // 视图控制按钮字体色
     view-sel-color: #fff, // 视图控制按钮被选择时字体色
     week-color: #ababab, // 星期字体色
-    sel-bg: #f5f5f5, // 被选择日期背景圆圈色
-    sel-today-bg: linear-gradient(145deg, #2a97ff, #4da4e6), // 被选择日期背景圆圈色（今日）
+    sel-bg: #2CBB87, // 被选择日期背景圆圈色
+    sel-today-bg: linear-gradient(#2CBB87, #2CBB87), // 被选择日期背景圆圈色（今日）
     sel-color: #313313, // 被选日期字体色
     sel-dot-color: #f37b1d, // 被选日期左上角‘･’的颜色
     sel-solar-color: #ababab, // 被选日期下方信息字体色
     sel-today-color: #fff, // 被选日期字体色（今日）
     sel-today-dot-color: #eee, // 被选日期左上角‘･’的颜色（今日）
     sel-today-solar-color: #fff, // 被选日期下方信息字体色（今日）
-    sel-hidden-today: #2a97ff, // 隐藏日期checked状态时今日日期字体色（今日且被选）
-    sel-hidden-solar: #2a97ff, // 隐藏日期checked状态时日期下方信息字体色（今日且被选）
-    date-today-color: #2a97ff, // 日期字体色（今日）
+    sel-hidden-today: #2CBB87, // 隐藏日期checked状态时今日日期字体色（今日且被选）
+    sel-hidden-solar: #2CBB87, // 隐藏日期checked状态时日期下方信息字体色（今日且被选）
+    date-today-color: #2CBB87, // 日期字体色（今日）
     date-color: #313313, // 日期字体色
     date-dot-color: #f37b1d, // 日期左上角‘･’的颜色
     date-info-color: #ababab, // 日期下方信息字体色
-    date-solar-color: #2a97ff, // 日期下方信息字体色（节气，节假日）
+    date-solar-color: #2CBB87, // 日期下方信息字体色（节气，节假日）
     schedule-bg: #f8f8f8, // 日程默认背景色
-    schedule-color: #2a97ff, // 日程默认字体色
-    control-bg: #dfdfdf, // 底部控制条背景色
+    schedule-color: #2CBB87, // 日程默认字体色
+    control-bg: #2CBB87, // 底部控制条背景色
     year-panel-bg: #fff, // 年面板背景色
     year-title-color: #313313, // 年面板左上角年份标题字体色
     year-title-info: #e54d42, // 年面板左上角年份标题右侧农历年信息字体色
     year-month-bg: #f8f8f8, // 年面板月份背景色
     year-month-curr-bg: #ecf5ff, // 年面板月份背景色（当月）
     year-month-title: #313313, // 年面板月份标题字体色
-    year-month-title-curr: #2a97ff, // 年面板月份标题字体色（当月）
+    year-month-title-curr: #2CBB87, // 年面板月份标题字体色（当月）
     year-month-info: #f37b1d, // 年面板月份农历信息字体色
     year-month-curr-info: #67b4fc // 年面板月份农历信息字体色（当月）
 );
@@ -54,22 +54,22 @@ $wx-calendar-theme-dark: (
     view-sel-color: #fff, 
     week-color: #bebebe, 
     sel-bg: #262626, 
-    sel-today-bg: linear-gradient(145deg, #2a97ff, #4da4e6), 
+    sel-today-bg: linear-gradient(145deg, #2CBB87, #4da4e6), 
     sel-color: #eee,
     sel-dot-color: #f37b1d,
     sel-solar-color: #bebebe,
     sel-today-color: #fff,
     sel-today-dot-color: #eee,
     sel-today-solar-color: #fff,
-    sel-hidden-today: #2a97ff,
-    sel-hidden-solar: #2a97ff,
-    date-today-color: #2a97ff,
+    sel-hidden-today: #2CBB87,
+    sel-hidden-solar: #2CBB87,
+    date-today-color: #2CBB87,
     date-color: #eee,
     date-dot-color: #f37b1d,
     date-info-color: #bebebe,
-    date-solar-color: #2a97ff,
+    date-solar-color: #2CBB87,
     schedule-bg: #4a4a4a,
-    schedule-color: #2a97ff,
+    schedule-color: #2CBB87,
     control-bg: #262626,
     year-panel-bg: #111,
     year-title-color: #eee,
@@ -77,7 +77,7 @@ $wx-calendar-theme-dark: (
     year-month-bg: #4a4a4a,
     year-month-curr-bg: #515963,
     year-month-title: #eee,
-    year-month-title-curr: #2a97ff,
+    year-month-title-curr: #2CBB87,
     year-month-info: #f37b1d,
     year-month-curr-info: #f37b1d
 );

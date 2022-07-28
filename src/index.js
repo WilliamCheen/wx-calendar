@@ -9,7 +9,8 @@ const INIT_TAB = PanelCountMiddleIdx(CALENDAR_PANELS)
 Component({
     behaviors: ['wx://component-export'],
     options: {
-        pureDataPattern: /^_/
+        pureDataPattern: /^_/,
+        styleIsolation: 'apply-shared'
     },
     properties: {
         /**
@@ -61,6 +62,7 @@ Component({
             type: Boolean,
             value: true
         },
+
         /**
          * @type {number} 0 | 1 | 2 | 3 | 4 | 5 | 6
          * @description 一周开始日
@@ -83,6 +85,26 @@ Component({
             value: true
         },
 
+        showControlBar: {
+            type: Boolean,
+            value: true
+        },
+
+        // 类型 dot | able
+        // { style: 'able', enable: 'black', disable: 'gray' }
+        scheduleStyle: {
+            type: Object,
+            value: {
+                style: 'dot',
+                dotColor: 'red'
+            }
+        },
+
+        todayText: {
+            type: String,
+            value: ''
+        },
+
         /**
          * @type {boolean} true | false
          * @description 是否显示标记
@@ -90,6 +112,11 @@ Component({
         showMark: {
             type: Boolean,
             value: true
+        },
+
+        userSelectDay: {
+            type: Object,
+            value: null
         }
     },
     data: {
@@ -145,8 +172,8 @@ Component({
 
         /** initialize */
         initialize(callback = () => {}) {
-            const { showTitleContent } = this.data;
-            const layout = new LayoutCalc({ showTitleContent });
+            const { showTitleContent, showControlBar } = this.data;
+            const layout = new LayoutCalc({ showTitleContent, showControlBar });
             const { mainHeight, panelHeight, maxHeight, minHeight } = layout.layout()
             const initSelDate = DateHandler.CorrectDate(this.data._date)
 
@@ -255,10 +282,15 @@ Component({
             const { idays, month } = this.data.months[currTab]
             const selDay = idays[idx]
             if (selDay.year === this._selDay.year && selDay.month === this._selDay.month && selDay.day === this._selDay.day) return
+            console.log('sel day; ', selDay, '; months: ', this.data.months[currTab]);
+            this.setData({
+                userSelectDay: selDay
+            });
+
             if (this.data.currView == 2) {
                 if (selDay.month != month) this.refreshCurrentWeekPanel(selDay)
                 else this.setSelDate(idx)
-                this.bindDateChange(selDay, false)
+                this.bindDateChange(selDay, false, true)
             } else {
                 if (selDay.state == 'prev' || selDay.state == 'next') {
                     this._selDay = selDay
@@ -266,7 +298,7 @@ Component({
                     this.setData({ currTab: _current })
                 } else {
                     this.setSelDate(idx)
-                    this.bindDateChange(selDay, false)
+                    this.bindDateChange(selDay, false, true)
                 }
             }
         },
@@ -787,11 +819,15 @@ Component({
                 this.triggerEvent('load', { date: this._selDay, view, range, visual, visualMonth: { year, month } })
             })
         },
-        bindDateChange(date, rangeChange = true) {
+        bindDateChange(date, rangeChange = true, isDayTap = false) {
             const view = this._currView == 2 ? 'week' : 'month'
             const { range, visual } = this.rangeDetail()
             const { year, month } = this.data.months[this.data.currTab]
-            this.triggerEvent('datechange', { date, view, range, visual, visualMonth: { year, month }, rangeChange })
+            if (isDayTap) {
+                this.triggerEvent('selectdate', { date, view, range, visual, visualMonth: { year, month }, rangeChange })
+            } else {
+                this.triggerEvent('datechange', { date, view, range, visual, visualMonth: { year, month }, rangeChange })
+            }
         },
         bindViewChange(view) {
             this.triggerEvent('viewchange', { view: view == 2 ? 'week' : 'month' })
