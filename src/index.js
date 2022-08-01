@@ -282,15 +282,10 @@ Component({
             const { idays, month } = this.data.months[currTab]
             const selDay = idays[idx]
             if (selDay.year === this._selDay.year && selDay.month === this._selDay.month && selDay.day === this._selDay.day) return
-            console.log('sel day; ', selDay, '; months: ', this.data.months[currTab]);
-            this.setData({
-                userSelectDay: selDay
-            });
-
             if (this.data.currView == 2) {
                 if (selDay.month != month) this.refreshCurrentWeekPanel(selDay)
                 else this.setSelDate(idx)
-                this.bindDateChange(selDay, false, true)
+                this.bindDateChange(selDay, false)
             } else {
                 if (selDay.state == 'prev' || selDay.state == 'next') {
                     this._selDay = selDay
@@ -298,7 +293,7 @@ Component({
                     this.setData({ currTab: _current })
                 } else {
                     this.setSelDate(idx)
-                    this.bindDateChange(selDay, false, true)
+                    this.bindDateChange(selDay, false)
                 }
             }
         },
@@ -819,15 +814,11 @@ Component({
                 this.triggerEvent('load', { date: this._selDay, view, range, visual, visualMonth: { year, month } })
             })
         },
-        bindDateChange(date, rangeChange = true, isDayTap = false) {
+        bindDateChange(date, rangeChange = true) {
             const view = this._currView == 2 ? 'week' : 'month'
             const { range, visual } = this.rangeDetail()
             const { year, month } = this.data.months[this.data.currTab]
-            if (isDayTap) {
-                this.triggerEvent('selectdate', { date, view, range, visual, visualMonth: { year, month }, rangeChange })
-            } else {
-                this.triggerEvent('datechange', { date, view, range, visual, visualMonth: { year, month }, rangeChange })
-            }
+            this.triggerEvent('datechange', { date, view, range, visual, visualMonth: { year, month }, rangeChange })
         },
         bindViewChange(view) {
             this.triggerEvent('viewchange', { view: view == 2 ? 'week' : 'month' })
